@@ -1,6 +1,6 @@
 # PocketTailor
 
-A personal project to become familiarized in XAML, WPF, and graphical user interface concepts.
+A personal project to become familiarized in XAML, WPF, and graphical user interface concepts such as MVVM.
 Primarily focused on bringing Alternate Data Streams (ADS) to those who enjoy GUI interaction more than command-line.
 
 ADS has been aliased to "Pockets". Only text data is supported for now, but will eventually include all data types.
