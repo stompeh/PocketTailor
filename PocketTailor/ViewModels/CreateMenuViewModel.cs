@@ -97,6 +97,9 @@ namespace PocketTailor.ViewModels
             {
                 SaveFileDialog sfd = new SaveFileDialog();
 
+                sfd.DefaultExt = "txt";
+                sfd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
                 sfd.ShowDialog();
 
                 if (sfd.FileName == "")
