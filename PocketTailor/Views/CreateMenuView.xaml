@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="PocketTailor.Views.CreateMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PocketTailor.Views"
+             xmlns:viewModel="clr-namespace:PocketTailor.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="440" d:DesignWidth="600">
+
+    <UserControl.DataContext>
+        <viewModel:CreateMenuViewModel/>
+    </UserControl.DataContext>
+
+    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+        <StackPanel>
+            <Border Margin="10" Background="#96031a" Height="400" Width="250">
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0,0,250,400"/>
+                </Border.Clip>
+                <StackPanel VerticalAlignment="Top">
+                    <TextBlock FontSize="16"
+                                Foreground="White"
+                                Text="Target File"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                    <TextBlock FontSize="12"
+                                Foreground="White"
+                                Text="{Binding CurrentTargetFilePath}"
+                                HorizontalAlignment="Center"
+                                Margin="10"/>
+                    <Button Content="Select File" 
+                            Command="{Binding SelectTargetFileBtnCommand}"
+                            Width="100"/>
+
+                    <Border Height="2" 
+                            Background="Black" 
+                            Margin="0,5,0,0"/>
+
+                    <TextBlock FontSize="14"
+                               Text="Pockets:"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                               
+                    <ListBox ItemsSource="{Binding CurrentTargetFilePocketsDisplay}"
+                             SelectedItem="{Binding SelectedPocketLB}"
+                             SelectedIndex="{Binding SelectedPocketLBIndex}"
+                             >
+                        
+                    </ListBox>
+
+                    <Button Content="Extract"
+                            Command="{Binding ExtractFromTargetSelectionCommand}"
+                            Width="100"
+                            Margin="10"/>
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel>
+            <Border Margin="10" Background="#faa916" Height="360" Width="250">
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0,0,250,360"/>
+                </Border.Clip>
+                <Grid>
+                    <StackPanel VerticalAlignment="Top">
+                        <TextBlock FontSize="16"
+                               Foreground="Black"
+                               Text="Data To Write"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="12"
+                               Foreground="Black"
+                               Text="{Binding CurrentDataFilePath}"
+                               HorizontalAlignment="Center"
+                               Margin="10"/>
+                        <Button Content="Select File" 
+                            Command="{Binding SelectDataFileBtnCommand}"
+                            Width="100"/>
+
+                        <Border Height="2" Background="Black" Margin="0,5,0,0"></Border>
+
+                        <TextBlock Margin="0,5,0,0" 
+                                   HorizontalAlignment="Center"
+                                   Text="Pocket Name:"
+                                   FontSize="14"
+                                   Foreground="Black"/>
+                        <TextBox Name="PocketNameTextBox"
+                                 Width="150"
+                                 Margin="0,2,0,0"
+                                 HorizontalAlignment="Center"
+                                 MaxLength="15"
+                                 Text="{Binding PocketName}"/>
+
+
+                        <StackPanel Margin="10" >
+                            <CheckBox IsEnabled="False">Encrypt on write ( Coming Soon! )</CheckBox>
+                            <CheckBox IsChecked="{Binding DeleteDataFileOnWrite}" >Delete data file after write</CheckBox>
+                        </StackPanel>
+
+                    </StackPanel>
+                    
+                </Grid>
+            </Border>
+            
+            
+            <Button Margin="0,5,0,0"
+                Content="Do It"
+                Command="{Binding WriteToTargetCommand}"
+                Width="250"/>
+        </StackPanel>
+        
+    </StackPanel>
+        
+</UserControl>

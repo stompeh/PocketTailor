@@ -1,0 +1,28 @@
+﻿<Application x:Class="PocketTailor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PocketTailor"
+             xmlns:viewModel="clr-namespace:PocketTailor.ViewModels"
+             xmlns:view="clr-namespace:PocketTailor.Views"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuNavButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:CreateMenuViewModel}">
+                <view:CreateMenuView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ExtractMenuViewModel}">
+                <view:ExtractMenuView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+        
+        
+    </Application.Resources>
+</Application>

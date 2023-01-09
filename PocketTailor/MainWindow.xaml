@@ -1,0 +1,75 @@
+﻿<Window x:Class="PocketTailor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PocketTailor"
+        xmlns:viewModel="clr-namespace:PocketTailor.ViewModels"
+        xmlns:view="clr-namespace:PocketTailor.Views"
+        mc:Ignorable="d"
+        Height="450" Width="800" 
+        WindowStyle="None" 
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseLeftButtonDown="Border_MouseLeftButtonDown">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border CornerRadius="10"
+            Background="#1b1b1e">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Side navigation menu -->
+            <StackPanel Grid.Column="0">
+                
+                <TextBlock Text="PocketTailor"
+                       FontSize="22"
+                       Foreground="#fbfffe"
+                       HorizontalAlignment="Center" 
+                       FontFamily="Bahnschrift SemiBold"
+                       Margin="0,25,0,0"/>
+                
+                <TextBlock Text="Version 0.5"
+                           Foreground="#fbfffe"
+                           HorizontalAlignment="Center"/>
+
+                <RadioButton Content="Create/Extract"
+                             Height="50"
+                             Style="{StaticResource MenuNameButtonTheme}"
+                             FontSize="14" Foreground="#fbfffe"
+                             IsChecked="True"
+                             Command="{Binding ChangeView_CreateCommand}"/>
+
+                <RadioButton Content="Scan"
+                             Height="50"
+                             Style="{StaticResource MenuNameButtonTheme}"
+                             FontSize="14" Foreground="#fbfffe"
+                             Command="{Binding ChangeView_ExtractCommand}"/>
+                
+            </StackPanel>
+
+            <!-- Main window content -->
+            <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,15,0"
+                            HorizontalAlignment="Right">
+
+                    <Button Name="MinimizeWindowButton" Margin="2" Content="🗕" Width="20"/>
+                    <Button Name="MaximizeWindowButton" Margin="2" Content="🗖" Width="20"/>
+                    <Button Name="CloseWindowButton" Margin="2" Content="✕" Width="20"
+                            Command="{Binding CloseWindowButtonCommand}"/>
+                </StackPanel>
+
+                <ContentControl Content="{Binding CurrentView}"/>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>
